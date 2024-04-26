@@ -1,28 +1,31 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { ItemDetailContainer } from "./components/ItemDetailContainer/ItemDetailContainer";
-import { ItemListContainer } from "./components/ItemListContainer/ItemListContainer";
-import { Navbar } from "./components/Navbar/Navbar";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import NavBar from "./components/NavBar/NavBar";
+import ItemListContainer from "./components/itemListContainter/ItemListContainer";
+import ItemDetailCointainer from "./components/itemListContainter/detail/ItemDetailContainer";
+import Cart from "./components/cart/Cart";
+import CartWidgetContext from "./components/context/CartContext";
+import Form from "./components/form/Form";
 
 function App() {
   return (
-    <div className="App">
-      <BrowserRouter>
-        <Navbar />
-        <Routes>
-          <Route
-            path="/"
-            element={<ItemListContainer bienvenida="Hola Coder" />}
-          />
-          <Route
-            path="category/:idCategory"
-            element={<ItemListContainer bienvenida="Hola Coder" />}
-          />
-          <Route path="item/:idItem" element={<ItemDetailContainer />} />
-          <Route path="/coder" element={<>Coder</>} />
-          <Route path="*" element={<>No hay ruta para ese path</>} />
-        </Routes>
-      </BrowserRouter>
-    </div>
+    <>
+      <CartWidgetContext>
+        <BrowserRouter>
+          <NavBar />
+
+          <Routes>
+            <Route exact path="/cart" element={<Cart />} />
+            <Route exact path="/" element={<ItemListContainer />} />
+            <Route
+              path="/categoria/:categoria"
+              element={<ItemListContainer />}
+            />
+            <Route exact path="/item/:id" element={<ItemDetailCointainer />} />
+            <Route exact path="/form" element={<Form />} />
+          </Routes>
+        </BrowserRouter>
+      </CartWidgetContext>
+    </>
   );
 }
 

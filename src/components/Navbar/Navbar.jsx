@@ -1,26 +1,67 @@
-import React from "react";
+import platonico from "../../assets/platonico.png";
+import CartWidget from "./CartWidget";
+import {
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
+  Flex,
+  Box,
+} from "@chakra-ui/react";
 import { Link } from "react-router-dom";
-import { CartWidget } from "./CartWidget";
-import "./navbar.css";
 
-export const Navbar = () => {
+const NavBar = () => {
   return (
-    <nav className="containerNav">
-      <Link to="/">
-        <div>Platon 🍽</div>
-      </Link>
-      <ul className="containerNav--ul">
-        <Link className="containerNav--ul--li" to="category/carnes">
-          Carnes
-        </Link>
-        <Link className="containerNav--ul--li" to="category/guarniciones">
-          Guarniciones
-        </Link>
-        <Link className="containerNav--ul--li" to="category/refrescos">
-          refrescos
-        </Link>
-      </ul>
-      <CartWidget />
-    </nav>
+    <>
+      <header>
+        <nav className="nav">
+          <Flex>
+            <Box p="2">
+              <Link to={"/"}>
+                <img className="imgplatonico" src={platonico} alt="" />
+              </Link>
+            </Box>
+            <Box p="2" className="categorias">
+              <Menu>
+                <MenuButton className="buttonMenu">Categorias</MenuButton>
+                <MenuList>
+                  <MenuItem className="categoria">
+                    <Link to={`/categoria/${"PROTEINA"}`}>Proteina</Link>
+                  </MenuItem>
+                  <MenuItem className="categoria">
+                    <Link to={`/categoria/${"GUARNICIONES"}`}>Guarnicones</Link>
+                  </MenuItem>
+                  <MenuItem className="categoria">
+                    <Link to={`/categoria/${"BEBIDAS"}`}>Bebidas</Link>
+                  </MenuItem>
+                </MenuList>
+              </Menu>
+              <Menu>
+                <MenuButton className="buttonMenu">Nosotros</MenuButton>
+                <MenuList>
+                  <MenuItem className="categoria">Seccion</MenuItem>
+                  <MenuItem className="categoria">Seccion</MenuItem>
+                  <MenuItem className="categoria">Seccion</MenuItem>
+                </MenuList>
+              </Menu>
+              <Menu>
+                <MenuButton className="buttonMenu">Contactanos</MenuButton>
+                <MenuList>
+                  <MenuItem className="categoria">Seccion</MenuItem>
+                  <MenuItem className="categoria">Seccion</MenuItem>
+                  <MenuItem className="categoria">Seccion</MenuItem>
+                </MenuList>
+              </Menu>
+            </Box>
+          </Flex>
+          <p className="cantP">Cantidad de productos:</p>
+          <Link to={"/cart"}>
+            <CartWidget />
+          </Link>
+        </nav>
+      </header>
+    </>
   );
 };
+
+export default NavBar;
